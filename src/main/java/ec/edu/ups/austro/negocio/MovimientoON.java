@@ -7,10 +7,8 @@ import javax.inject.Inject;
 
 import ec.edu.ups.austro.DAO.CuentaDAO;
 import ec.edu.ups.austro.DAO.MovimientoDAO;
-import ec.edu.ups.austro.DAO.TransferenciaDAO;
 import ec.edu.ups.austro.modelo.Cuenta;
 import ec.edu.ups.austro.modelo.Movimiento;
-import ec.edu.ups.austro.modelo.Transferencia;
 
 @Stateless
 public class MovimientoON implements MovimientoONLocal{
@@ -21,8 +19,6 @@ public class MovimientoON implements MovimientoONLocal{
 	@Inject
 	private CuentaDAO cuentaDAO;
 	
-	@Inject
-	private TransferenciaDAO transferenciaDAO;
 
 	private Cuenta cuenta = new Cuenta();
 
@@ -42,11 +38,7 @@ public class MovimientoON implements MovimientoONLocal{
 		int id = daoMovimiento.contarMovimiento();
 		return id;
 	}
-	
-	public int transferenciaN() throws SQLException {
-		int id = transferenciaDAO.contarTransferencia();
-		return id;
-	}
+
 
 	public Cuenta cuenta(String nCuenta) throws SQLException {
 		cuenta = cuentaDAO.buscarCuenta(nCuenta);
@@ -59,9 +51,5 @@ public class MovimientoON implements MovimientoONLocal{
 		return true;
 	}
 
-	public boolean crearTransferencia(Transferencia transferencia) throws SQLException {
-		transferenciaDAO.insertTransferencia(transferencia);
-		return true;
-	}
 	
 }
